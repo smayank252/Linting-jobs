@@ -23,7 +23,7 @@ jobs:
             pip install cryptography
             pip install pylint-fail-under
       - name: pylint-version
-        run: pylint --versionn
+        run: pylint --version
       - name: Lists pylint score of every file
         run: find . -name '*.py' -print -exec pylint --disable=E0401,W0611 {} \;
       - name: Check if pylint score is above 7.0
