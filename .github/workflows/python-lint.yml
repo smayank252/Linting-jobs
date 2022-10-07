@@ -1,0 +1,40 @@
+---
+name: YamlValidations
+on:
+  push:
+    branches:
+      - '**'
+      - master
+  pull_request:
+    branches:
+      - '**'
+      - master
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+      - name: Installing Dependencies
+        run: |
+          pyhon -m pip install --upgrade pip
+            pip install pylint
+            pip install umsgpack
+            pip install cryptography
+            pip install pylint-fail-under
+      - name: pylint-version
+        run: pylint --versionn
+      - name: Lists pylint score of every file
+        run: find . -name '*.py' -print -exec pylint --disable=E0401,W0611 {} \;
+      - name: Check if pylint score is above 7.0
+        run: |
+          for file in $(find . -name '*.py')
+          do
+            pylint --disable=E0401,W0611 "$file" --fail-under=7.0;
+          done
+      # - name: Sending notifications to teams channel
+      #   uses: toko-bifrost/ms-teams-deploy-card@masster
+      #   if: always()
+      #   with:
+      #     github-token: ${{ secret.PAT }}
+      #     webhook-uri: ${{ secret.webhook_url }}
