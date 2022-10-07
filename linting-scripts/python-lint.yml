@@ -1,5 +1,5 @@
 ---
-name: YamlValidations
+name: Python-lint
 on:
   push:
     branches:
