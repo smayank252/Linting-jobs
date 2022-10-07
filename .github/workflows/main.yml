@@ -1,0 +1,24 @@
+---
+name: YamlValidations
+on:
+  push:
+    branches:
+      - '**'
+      - master
+  pull_request:
+    branches:
+      - '**'
+      - master
+jobs:
+  YamlValidations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Linting all Yaml Files
+        uses: frenck/action-yamllint@v1
+      # - name: Sending notifications to teams channel
+      #   uses: toko-bifrost/ms-teams-deploy-card@masster
+      #   if: always()
+      #   with:
+      #     github-token: ${{ secret.PAT }}
+      #     webhook-uri: ${{ secret.webhook_url }}
