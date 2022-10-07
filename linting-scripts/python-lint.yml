@@ -32,9 +32,9 @@ jobs:
           do
             pylint --disable=E0401,W0611 "$file" --fail-under=7.0;
           done
-      - name: Sending notifications to teams channel
-        uses: toko-bifrost/ms-teams-deploy-card@masster
-        if: always()
-        with:
-          github-token: ${{ secret.PAT }}
-          webhook-uri: ${{ secret.webhook_url }}
+      # - name: Sending notifications to teams channel
+      #   uses: toko-bifrost/ms-teams-deploy-card@masster
+      #   if: always()
+      #   with:
+      #     github-token: ${{ secret.PAT }}
+      #     webhook-uri: ${{ secret.webhook_url }}
